@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://kinjo.wallabystreet.com/resource"
+	xmlns:r="http://kinjo.wallabystreet.com/resource">
+
+	<xs:simpleType name="uuid">
+		<xs:restriction base="xs:token">
+			<xs:pattern
+				value="[\da-fA-F]{8}-([\da-fA-F]{4}-){3}[\da-fA-F]{12}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="name">
+		<xs:restriction base="xs:normalizedString" />
+	</xs:simpleType>
+
+	<xs:simpleType name="description">
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+
+	<xs:simpleType name="target">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="\w+(\.\w+)*" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:attributeGroup name="validity">
+		<xs:attribute
+			name="validFrom"
+			type="xs:dateTime"
+			use="optional" />
+		<xs:attribute
+			name="validUntil"
+			type="xs:dateTime"
+			use="optional" />
+	</xs:attributeGroup>
+
+	<xs:complexType name="value">
+		<xs:simpleContent>
+			<xs:extension base="xs:token">
+				<xs:attribute
+					name="type"
+					type="xs:token"
+					use="required" />
+				<xs:attributeGroup ref="r:validity" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="diary">
+		<xs:sequence
+			minOccurs="1"
+			maxOccurs="unbounded">
+			<xs:element name="entry">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							name="timestamp"
+							type="xs:dateTime" />
+						<xs:element
+							name="value"
+							type="r:value" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="r:validity" />
+	</xs:complexType>
+
+	<xs:complexType name="attribute">
+		<xs:sequence>
+			<xs:element
+				name="key"
+				type="xs:token">
+			</xs:element>
+			<xs:element
+				name="value"
+				type="r:value" />
+			<xs:element
+				name="diary"
+				type="r:diary"
+				minOccurs="0" />
+
+			<xs:element
+				name="attribute"
+				type="r:attribute"
+				minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:element name="resource">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="metadata">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element
+								name="id"
+								type="r:uuid" />
+							<xs:element name="location">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:anyURI">
+											<xs:attribute
+												name="target"
+												type="r:target"
+												use="required" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="type">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element
+											name="id"
+											type="r:uuid" />
+										<xs:element
+											name="name"
+											type="r:name"
+											minOccurs="0" />
+										<xs:element
+											name="description"
+											type="r:description"
+											minOccurs="0" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element
+								name="name"
+								type="r:name"
+								minOccurs="0" />
+							<xs:element
+								name="description"
+								type="r:description"
+								minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="definition">
+					<xs:complexType>
+						<xs:sequence maxOccurs="unbounded">
+							<xs:element
+								name="attribute"
+								type="r:attribute" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

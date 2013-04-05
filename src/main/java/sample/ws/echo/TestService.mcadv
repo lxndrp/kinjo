@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jxta:MCA>
+<jxta:MCA xmlns:jxta="http://jxta.org">
+	<MCID>
+		urn:jxta:uuid-D1FD9010ABB243409EA981EB9EC8851005
+	</MCID>
+	<Name>
+		JXTAMOD:KINJO-SampleProtocol
+	</Name>
+	<Desc>
+		The module class of the sample protocol.
+	</Desc>
+</jxta:MCA>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://kinjo.wallabystreet.com/type"
+	xmlns:t="http://kinjo.wallabystreet.com/type">
+
+	<xs:simpleType name="uuid">
+		<xs:restriction base="xs:token">
+			<xs:pattern
+				value="[\da-fA-F]{8}-([\da-fA-F]{4}-){3}[\da-fA-F]{12}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="contact">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="\w+@\w+(.\w+)+" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="name">
+		<xs:restriction base="xs:normalizedString"></xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="description">
+		<xs:restriction base="xs:string"></xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="class">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="\w+:\w+(\.\w+)*" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="quantity">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="[1-9]+[\d]*|\d+\.\.([1-9]+[\d]*|\*)" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="element">
+		<xs:sequence>
+			<xs:element
+				name="name"
+				type="xs:token">
+			</xs:element>
+			<xs:element name="comment" type="xs:string" minOccurs="0">
+			</xs:element>
+			<xs:element
+				name="class"
+				type="t:class">
+			</xs:element>
+			<xs:element
+				name="quantity"
+				type="t:quantity">
+			</xs:element>
+			<xs:element
+				name="element"
+				type="t:element"
+				minOccurs="0"
+				maxOccurs="unbounded">
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="type">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="metadata">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element
+								name="id"
+								type="t:uuid">
+							</xs:element>
+							<xs:element name="author">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element
+											name="name"
+											type="xs:string"
+											minOccurs="0">
+										</xs:element>
+										<xs:element
+											name="organisation"
+											type="xs:string"
+											minOccurs="0">
+										</xs:element>
+										<xs:element
+											name="url"
+											type="xs:anyURI"
+											minOccurs="0">
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute
+										name="contact"
+										type="t:contact"
+										use="required">
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element
+								name="name"
+								type="t:name">
+							</xs:element>
+							<xs:element
+								name="description"
+								type="t:description">
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="definition">
+					<xs:complexType>
+						<xs:sequence maxOccurs="unbounded">
+							<xs:element
+								name="element"
+								type="t:element">
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

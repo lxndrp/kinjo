@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="urn:Example" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="urn:Example" xmlns:intf="urn:Example" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="">
+<!--WSDL created by Apache Axis version: 1.2.1
+Built on Jun 14, 2005 (09:15:57 EDT)-->
+
+   <wsdl:message name="echoRequest">
+
+      <wsdl:part name="_msg" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="echoResponse">
+
+      <wsdl:part name="echoReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Echo">
+
+      <wsdl:operation name="echo" parameterOrder="_msg">
+
+         <wsdl:input message="impl:echoRequest" name="echoRequest"/>
+
+         <wsdl:output message="impl:echoResponse" name="echoResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="Echo" type="impl:Echo">
+
+
+        <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="echo">
+
+
+            <wsdlsoap:operation soapAction="urn:Example/echo"/>
+            <wsdl:input name="echoRequest">
+
+
+                <wsdlsoap:body use="encoded" namespace="urn:Example" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+
+         <wsdl:output name="echoResponse">
+
+
+                <wsdlsoap:body use="encoded" namespace="urn:Example" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="EchoService">
+
+      <wsdl:port binding="impl:Echo" name="TestService">
+
+         <wsdlsoap:address location="http://example.com/TestService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

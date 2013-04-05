@@ -1,0 +1,3 @@
+PipeName = JXTAPIPE:KINJO-SampleProtocol
+PipeDesc = KINJO-SampleProtocol
+PipeType = JxtaUnicast

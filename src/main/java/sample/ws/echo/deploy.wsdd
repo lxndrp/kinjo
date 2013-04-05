@@ -1,0 +1,34 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+	<transport name="jxta">
+		<requestFlow>
+			<handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+		</requestFlow>
+	</transport>
+
+  <!-- Services from EchoService WSDL service -->
+
+  <service name="TestService" provider="java:RPC" style="rpc" use="encoded">
+      <parameter name="wsdlTargetNamespace" value="urn:Example"/>
+      <parameter name="wsdlServiceElement" value="EchoService"/>
+      <parameter name="wsdlServicePort" value="TestService"/>
+      <parameter name="className" value="edu.udo.kinjo.scheduling.sampleproto.EchoImpl"/>
+      <parameter name="wsdlPortType" value="Echo"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="echo" qname="operNS:echo" xmlns:operNS="urn:Example" returnQName="echoReturn" returnType="rtns:string" xmlns:rtns="http://schemas.xmlsoap.org/soap/encoding/" soapAction="" >
+        <parameter qname="_msg" type="tns:string" xmlns:tns="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </operation>
+      <parameter name="allowedMethods" value="echo"/>
+
+  </service>
+</deployment>

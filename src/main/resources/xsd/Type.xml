@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<k:type
+	xmlns:k="http://kinjo.wallabystreet.com/type"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://kinjo.wallabystreet.com/type Type.xsd ">
+	
+	<metadata>
+		<id>01234567-89ab-cdef-0123-456789abcdef</id>
+		<author contact="type@example.com">
+			<name>Sample Author</name>
+			<organisation>Sample Oganisation</organisation>
+			<url>http://example.org/SampleType</url>
+		</author>
+		<name>Sample Type</name>
+		<description>A sample type definition</description>
+	</metadata>
+	
+	<definition>
+		<element>
+			<name>someElement</name>
+			<class>java:com.example.SomeType</class>
+			<quantity>1</quantity>
+			<element>
+				<name>someElement</name>
+				<class>lisp:com.example.OtherType</class>
+				<quantity>0..*</quantity>
+				<element>
+					<name>someElement</name>
+					<class>c:com.example.YetAnotherType</class>
+					<quantity>1</quantity>
+				</element>
+			</element>
+		</element>
+	</definition>
+
+</k:type>

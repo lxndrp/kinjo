@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jxta:MSA>
+<jxta:MSA xmlns:jxta="http://jxta.org">
+	<MSID>
+		urn:jxta:uuid-D1FD9010ABB243409EA981EB9EC8851063C6D7B083704614B22F937236831BE206
+	</MSID>
+	<Name>
+		JXTASPEC:KINJO-SampleProtocol
+	</Name>
+	<Crtr>
+		ACME Inc.
+	</Crtr>
+	<SURI>
+		http://kinjo.org/sampleproto
+	</SURI>
+	<Vers>
+		1.0
+	</Vers>
+	<Desc>
+		The module specification of the sample protocol.
+	</Desc>
+</jxta:MSA>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<k:resource
+	xmlns:k="http://kinjo.wallabystreet.com/resource"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://kinjo.wallabystreet.com/resource Resource.xsd ">
+	
+	<metadata>
+		<id>01234567-89ab-cdef-0123-456789abcdef</id>
+		<location target="some.namespace">http://example.org/SampleResource</location>
+		<type>
+			<id>fedcba98-7654-3210-fedc-ba9876543210</id>
+			<name>Sample Type</name>
+			<description>A sample type definition.</description>
+		</type>
+		<name>Sample Resource</name>
+		<description>A sample resource definition.</description>
+	</metadata>
+	
+	<definition>
+		<attribute>
+			<key>token</key>
+			<value
+				type="token"
+				validFrom="2001-12-31T12:00:00"
+				validUntil="2001-12-31T12:00:00">
+				token
+			</value>
+			<diary
+				validFrom="2001-12-31T12:00:00"
+				validUntil="2001-12-31T12:00:00">
+				<entry>
+					<timestamp>2001-12-31T12:00:00</timestamp>
+					<value
+						type="token"
+						validFrom="2001-12-31T12:00:00"
+						validUntil="2001-12-31T12:00:00">
+						token
+					</value>
+				</entry>
+			</diary>
+			<attribute>
+				<key>token</key>
+				<value
+					type="token"
+					validFrom="2001-12-31T12:00:00"
+					validUntil="2001-12-31T12:00:00">
+					token
+				</value>
+				<diary
+					validFrom="2001-12-31T12:00:00"
+					validUntil="2001-12-31T12:00:00">
+					<entry>
+						<timestamp>2001-12-31T12:00:00</timestamp>
+						<value
+							type="token"
+							validFrom="2001-12-31T12:00:00"
+							validUntil="2001-12-31T12:00:00">
+							token
+						</value>
+					</entry>
+				</diary>
+			</attribute>
+		</attribute>
+	</definition>
+
+</k:resource>
